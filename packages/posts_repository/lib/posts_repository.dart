@@ -1,4 +1,6 @@
 /// A Very Good Project created by Very Good CLI.
 library;
 
-export 'src/posts_repository.dart';
+export 'src/models/models.dart';
+export 'src/repositories/repositories.dart';
+export 'src/services/services.dart';
