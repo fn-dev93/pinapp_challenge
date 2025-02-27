@@ -3,23 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:posts_repository/posts_repository.dart';
 
 class CommentCard extends StatelessWidget {
-  final Comment comment;
-
+  /// A widget that represents a comment card
   const CommentCard({
-    Key? key,
     required this.comment,
-  }) : super(key: key);
+    super.key,
+  });
+
+  final Comment comment;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      elevation: 1,
+      margin: const EdgeInsets.all(8),
+      elevation: 5,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

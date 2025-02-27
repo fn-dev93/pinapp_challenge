@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pinapp_challenge/features/comments/view/comments_page.dart';
-import 'package:pinapp_challenge/features/posts/view/posts_page.dart';
+import 'package:pinapp_challenge/config/app_router.dart';
 import 'package:pinapp_challenge/l10n/l10n.dart';
 import 'package:posts_repository/posts_repository.dart';
 
@@ -18,12 +17,15 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final router = AppRouter();
+
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider.value(value: _postsRepository),
         RepositoryProvider.value(value: _commentsRepository),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
+        routerConfig: router.router,
         theme: ThemeData(
           appBarTheme: AppBarTheme(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -32,11 +34,6 @@ class App extends StatelessWidget {
         ),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        home: PostsPage(),
-        routes: {
-          PostsPage.path: (context) => PostsPage(),
-          CommentsPage.path: (context) => CommentsPage(),
-        },
       ),
     );
   }

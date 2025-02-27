@@ -6,15 +6,10 @@ import 'package:posts_repository/posts_repository.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final platformChannelService = PlatformChannelService(
-    channelName: 'com.example.verygoodcore.pinapp-challenge/comments',
-  );
   bootstrap(
     () => App(
       postsRepository: PostsRepository(),
-      commentsRepository: CommentsRepository(
-        platformChannelService: platformChannelService,
-      ),
+      commentsRepository: CommentsRepository(),
     ),
   );
 }
