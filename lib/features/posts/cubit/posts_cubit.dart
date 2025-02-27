@@ -12,6 +12,7 @@ class PostsCubit extends Cubit<PostsState> {
 
   final PostsRepository _postsRepository;
 
+  /// Fetches all posts.
   Future<void> getPosts() async {
     emit(state.copyWith(status: PostsStatus.loading));
     try {
@@ -27,6 +28,7 @@ class PostsCubit extends Cubit<PostsState> {
     }
   }
 
+  /// Fetches a post by its id.
   Future<void> getPostById(int postId) async {
     emit(state.copyWith(status: PostsStatus.loading));
     try {

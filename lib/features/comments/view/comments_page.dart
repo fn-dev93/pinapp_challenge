@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinapp_challenge/features/comments/cubit/comments_cubit.dart';
 import 'package:pinapp_challenge/features/comments/widgets/widget.dart';
+import 'package:pinapp_challenge/l10n/l10n.dart';
 import 'package:pinapp_challenge/widgets/widgets.dart';
 import 'package:posts_repository/posts_repository.dart';
 
@@ -25,7 +26,7 @@ class CommentsPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => CommentsCubit(
         postsRepository: context.read<CommentsRepository>(),
-      )..getComments(1),
+      )..getComments(post.id),
       child: CommentsView(post: post),
     );
   }
@@ -42,21 +43,25 @@ class CommentsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return BlocBuilder<CommentsCubit, CommentsState>(
       builder: (context, state) {
         final status = state.status;
         return Scaffold(
           appBar: AppBar(
-            title: Text('Post #${post.id}'),
+            title: Text('${l10n.post} #${post.id}'),
             centerTitle: true,
             leading: IconButton(
               icon: const Icon(Icons.arrow_back_ios),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: Navigator.of(context).pop,
             ),
           ),
           body: switch (status) {
-            CommentsStatus.initial => const Center(child: Text('Initial')),
-            CommentsStatus.error => const Center(child: Text('Error')),
+            CommentsStatus.error => RetryButton(
+                errorMessage: l10n.failedLoadingComments,
+                onRetry: () =>
+                    context.read<CommentsCubit>().getComments(post.id),
+              ),
             CommentsStatus.loading => const Loader(),
             CommentsStatus.loaded => Column(
                 children: [
@@ -70,8 +75,10 @@ class CommentsView extends StatelessWidget {
                       },
                     ),
                   ),
+                  const SizedBox(height: 20),
                 ],
               ),
+            _ => const SizedBox.shrink(),
           },
         );
       },

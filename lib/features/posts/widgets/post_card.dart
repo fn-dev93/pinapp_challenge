@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pinapp_challenge/l10n/l10n.dart';
 import 'package:posts_repository/posts_repository.dart';
 
 class PostCard extends StatelessWidget {
@@ -13,6 +14,7 @@ class PostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Card(
       margin: const EdgeInsets.all(12),
       elevation: 5,
@@ -48,7 +50,7 @@ class PostCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    'Post #${post.id}',
+                    '${l10n.post} #${post.id}',
                     style: TextStyle(
                       color: Colors.grey[600],
                       fontSize: 12,

@@ -77,9 +77,10 @@ class PostsRepository implements PostsRepositoryInterface {
           await _httpClient.get(Uri.parse('$baseUrl/posts?userId=$userId'));
 
       if (response.statusCode == 200) {
-        final jsonList =
-            json.decode(response.body) as List<Map<String, dynamic>>;
-        return jsonList.map(Post.fromJson).toList();
+        final jsonList = json.decode(response.body) as List<dynamic>;
+        return jsonList
+            .map((json) => Post.fromJson(json as Map<String, dynamic>))
+            .toList();
       } else {
         throw ApiException(
           'Failed to load posts for user $userId',

@@ -1,11 +1,10 @@
+# Repositorio de Publicaciones
 
-# Posts Repository
+El paquete `posts_repository` proporciona un repositorio para manejar datos de publicaciones y comentarios desde una API.
 
-The `posts_repository` package provides a repository for managing post and comment data from an API.
+## Instalación
 
-## Installation
-
-Add `posts_repository` to your `pubspec.yaml` file:
+Agrega `posts_repository` a tu archivo `pubspec.yaml`:
 
 ```yaml
 dependencies:
@@ -13,11 +12,11 @@ dependencies:
     path: packages/posts_repository
 ```
 
-## Usage
+## Uso
 
 ### PostsRepository
 
-The `PostsRepository` is used to fetch post data from the API.
+El `PostsRepository` se utiliza para obtener datos de publicaciones desde la API.
 
 ```dart
 import 'package:posts_repository/posts_repository.dart';
@@ -25,15 +24,15 @@ import 'package:posts_repository/posts_repository.dart';
 void main() async {
   final postsRepository = PostsRepository();
 
-  // Fetch all posts
+  // Obtener todas las publicaciones
   final posts = await postsRepository.getPosts();
   print(posts);
 
-  // Fetch a post by ID
+  // Obtener una publicación por ID
   final post = await postsRepository.getPostById(1);
   print(post);
 
-  // Fetch posts by user ID
+  // Obtener publicaciones por ID de usuario
   final userPosts = await postsRepository.getPostsByUserId(1);
   print(userPosts);
 }
@@ -41,7 +40,7 @@ void main() async {
 
 ### CommentsRepository
 
-The `CommentsRepository` is used to fetch comment data from the API.
+El `CommentsRepository` se utiliza para obtener datos de comentarios desde la API.
 
 ```dart
 import 'package:posts_repository/posts_repository.dart';
@@ -49,14 +48,12 @@ import 'package:posts_repository/posts_repository.dart';
 void main() async {
   final commentsRepository = CommentsRepository();
 
-  // Fetch comments by post ID
+  // Obtener comentarios por ID de publicación
   final comments = await commentsRepository.getCommentsByPostId(1);
   print(comments);
 }
 ```
 
-Read the spanish version [here](README.es.md).
+## Licencia
 
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
+Este proyecto está licenciado bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
