@@ -1,11 +1,13 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:meta/meta.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pinapp_challenge/features/posts/cubit/posts_cubit.dart';
 import 'package:posts_repository/posts_repository.dart';
 
 class MockPostsRepository extends Mock implements PostsRepository {}
 
+@immutable
 class FakePost extends Fake implements Post {
   @override
   int get id => 1;
@@ -23,6 +25,9 @@ class FakePost extends Fake implements Post {
     }
     return false;
   }
+
+  @override
+  int get hashCode => id.hashCode;
 }
 
 void main() {
