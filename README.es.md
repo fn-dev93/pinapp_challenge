@@ -2,6 +2,8 @@
 
 El `PinApp Challenge` es una aplicación Flutter que demuestra el uso de repositorios para manejar datos de publicaciones y comentarios desde una API.
 
+[▶ Watch Video](https://drive.google.com/file/d/1Mje_WxAQY5E_xi8C4UnPqfarMZ-qtmP0/view?usp=sharing)
+
 ## Instalación
 
 1. Clona el repositorio:
