@@ -68,34 +68,6 @@ void main() {
     );
 
     blocTest<PostsCubit, PostsState>(
-      'emits [loading, loaded] when getPostById succeeds',
-      build: () {
-        when(() => mockPostsRepository.getPostById(any<int>()))
-            .thenAnswer((_) async => FakePost());
-        return postsCubit;
-      },
-      act: (cubit) => cubit.getPostById(1),
-      expect: () => [
-        const PostsState(status: PostsStatus.loading),
-        PostsState(status: PostsStatus.loaded, posts: [FakePost()]),
-      ],
-    );
-
-    blocTest<PostsCubit, PostsState>(
-      'emits [loading, error] when getPostById fails',
-      build: () {
-        when(() => mockPostsRepository.getPostById(1))
-            .thenThrow(Exception('error'));
-        return postsCubit;
-      },
-      act: (cubit) => cubit.getPostById(1),
-      expect: () => [
-        const PostsState(status: PostsStatus.loading),
-        const PostsState(status: PostsStatus.error),
-      ],
-    );
-
-    blocTest<PostsCubit, PostsState>(
       'emits [loading, loaded] when getPosts returns posts',
       build: () {
         when(() => mockPostsRepository.getPosts())

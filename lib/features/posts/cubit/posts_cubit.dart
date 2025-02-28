@@ -27,20 +27,4 @@ class PostsCubit extends Cubit<PostsState> {
       emit(state.copyWith(status: PostsStatus.error));
     }
   }
-
-  /// Fetches a post by its id.
-  Future<void> getPostById(int postId) async {
-    emit(state.copyWith(status: PostsStatus.loading));
-    try {
-      final post = await _postsRepository.getPostById(postId);
-      emit(
-        state.copyWith(
-          status: PostsStatus.loaded,
-          posts: [post],
-        ),
-      );
-    } catch (e) {
-      emit(state.copyWith(status: PostsStatus.error));
-    }
-  }
 }
